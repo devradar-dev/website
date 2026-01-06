@@ -1,0 +1,67 @@
+name: Compatibility Report
+description: Report a compatibility issue between two technologies
+title: "[COMPAT] <Tech A> + <Tech B>"
+labels: ["compatibility", "report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a compatibility issue! This data helps the DevRadar community.
+        Read the full report at: https://devradar.dev
+
+  - type: input
+    id: tech-a
+    attributes:
+      label: Technology A
+      description: The first technology or framework
+      placeholder: e.g., Next.js 15
+    validations:
+      required: true
+
+  - type: input
+    id: tech-b
+    attributes:
+      label: Technology B
+      description: The second technology or library
+      placeholder: e.g., Prisma 6
+    validations:
+      required: true
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Compatibility Status
+      description: What is the compatibility status?
+      options:
+        - Compatible
+        - Partially Compatible
+        - Incompatible
+        - Unknown
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Please provide details about the compatibility status
+      placeholder: |
+        - What works / what doesn't?
+        - Are there workarounds?
+        - Any specific versions affected?
+        - Links to documentation or issues that support this report
+    validations:
+      required: true
+
+  - type: input
+    id: sources
+    attributes:
+      label: Sources
+      description: Links to documentation, GitHub issues, or discussions
+      placeholder: https://github.com/...
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        View more compatibility checks at [devradar.dev/check](https://devradar.dev/check)

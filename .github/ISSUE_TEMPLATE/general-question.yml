@@ -1,0 +1,50 @@
+name: General Question
+description: Ask a question or suggest a feature
+title: "[QUESTION] Your title here"
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question about DevRadar? We'd love to hear from you!
+        Visit us at: https://devradar.dev
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: Type your question here...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: topic
+    attributes:
+      label: Topic
+      description: What is this about?
+      options:
+        - General inquiry
+        - Feature suggestion
+        - Data correction
+        - Partnership
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Additional Details
+      description: Any additional context or information
+      placeholder: Add more details here...
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        **Quick Links:**
+        - [Compatibility Checks](https://devradar.dev/check)
+        - [AI Tools Directory](https://devradar.dev/tools)
+        - [Stack Wizard](https://devradar.dev/wizard)
+        - [Contact Us](https://devradar.dev/contact)

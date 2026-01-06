@@ -1,0 +1,76 @@
+name: AI Tool Request
+description: Request a new AI coding tool to be added
+title: "[TOOL] <Tool Name>"
+labels: ["ai-tool", "request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Want to see an AI tool added to DevRadar? Let us know!
+        Browse existing tools at: https://devradar.dev/tools
+
+  - type: input
+    id: tool-name
+    attributes:
+      label: Tool Name
+      description: The name of the AI coding tool
+      placeholder: e.g., v0.dev
+    validations:
+      required: true
+
+  - type: input
+    id: website
+    attributes:
+      label: Official Website
+      description: URL to the tool's official website
+      placeholder: https://...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: What type of AI tool is this?
+      options:
+        - Vibe Coding (Prompt-to-app)
+        - AI IDE / Editor
+        - CLI Agent
+        - Managed Platform
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Brief description of what this tool does
+      placeholder: What makes this tool unique? Who is it for?
+    validations:
+      required: true
+
+  - type: textarea
+    id: best-for
+    attributes:
+      label: Best For
+      description: What use cases is this tool best suited for?
+      placeholder: |
+        - e.g., Quick prototypes
+        - e.g., Enterprise apps
+        - e.g., Learning React
+    validations:
+      required: false
+
+  - type: input
+    id: pricing
+    attributes:
+      label: Pricing Model
+      description: Free, freemium, or paid?
+      placeholder: e.g., Freemium ($20/month for Pro)
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        Compare AI tools at [devradar.dev/tools](https://devradar.dev/tools)
