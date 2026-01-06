@@ -1,0 +1,168 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://devradar.dev/docs/api-schema.json",
+  "title": "DevRadar API Schema",
+  "description": "Public API schema for DevRadar compatibility and tools data",
+  "type": "object",
+  "definitions": {
+    "CompatibilityStatus": {
+      "type": "string",
+      "enum": ["compatible", "partial", "incompatible", "deprecated", "unknown"],
+      "description": "Compatibility status between two technologies"
+    },
+    "CompatibilityRule": {
+      "type": "object",
+      "description": "A compatibility rule between two technologies",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier" },
+        "libraryA": { "type": "string", "description": "First technology/library name" },
+        "libraryB": { "type": "string", "description": "Second technology/library name" },
+        "status": { "$ref": "#/definitions/CompatibilityStatus" },
+        "reason": { "type": "string", "description": "Explanation of compatibility status" },
+        "summaryReason": { "type": "string", "description": "Short summary of compatibility" },
+        "knownIssues": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of known issues"
+        },
+        "workaround": {
+          "type": "string",
+          "description": "Workaround for partial/incompatible status"
+        },
+        "sources": {
+          "type": "array",
+          "items": { "type": "string", "format": "uri" },
+          "description": "Source URLs for this compatibility data"
+        },
+        "slug": { "type": "string", "description": "URL-friendly identifier" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "libraryA", "libraryB", "status"]
+    },
+    "AIToolCategory": {
+      "type": "string",
+      "enum": ["vibe-coding", "ai-ide", "cli-agent", "managed-platform"],
+      "description": "Category of AI coding tool"
+    },
+    "AITool": {
+      "type": "object",
+      "description": "An AI-powered development tool",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier" },
+        "name": { "type": "string", "description": "Tool name" },
+        "slug": { "type": "string", "description": "URL-friendly identifier" },
+        "category": { "$ref": "#/definitions/AIToolCategory" },
+        "description": { "type": "string", "description": "Tool description" },
+        "website": { "type": "string", "format": "uri", "description": "Official website" },
+        "pricingTier": {
+          "type": "string",
+          "enum": ["free", "freemium", "paid"],
+          "description": "Pricing model"
+        },
+        "bestFor": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Use cases this tool is best for"
+        },
+        "limitations": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Known limitations"
+        },
+        "features": {
+          "type": "object",
+          "description": "Feature flags",
+          "properties": {
+            "hasFreeTier": { "type": "boolean" },
+            "hasTrial": { "type": "boolean" },
+            "opensource": { "type": "boolean" },
+            "selfHostable": { "type": "boolean" }
+          }
+        },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "slug", "category"]
+    },
+    "Hub": {
+      "type": "object",
+      "description": "A hub page for a technology",
+      "properties": {
+        "id": { "type": "string" },
+        "slug": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "website": { "type": "string", "format": "uri" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "endpoints": {
+    "compatibility": {
+      "description": "Compatibility check endpoints",
+      "paths": {
+        "/api/check": {
+          "method": "GET",
+          "description": "Check compatibility between two technologies",
+          "parameters": {
+            "techA": { "type": "string", "description": "First technology" },
+            "techB": { "type": "string", "description": "Second technology" }
+          },
+          "response": { "$ref": "#/definitions/CompatibilityRule" }
+        },
+        "/api/compatibility/rules": {
+          "method": "GET",
+          "description": "List all compatibility rules",
+          "parameters": {
+            "limit": { "type": "integer", "default": 50 },
+            "status": { "$ref": "#/definitions/CompatibilityStatus" }
+          },
+          "response": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/CompatibilityRule" }
+          }
+        }
+      }
+    },
+    "tools": {
+      "description": "AI tools endpoints",
+      "paths": {
+        "/api/tools": {
+          "method": "GET",
+          "description": "List all AI coding tools",
+          "parameters": {
+            "category": { "$ref": "#/definitions/AIToolCategory" }
+          },
+          "response": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/AITool" }
+          }
+        },
+        "/api/tools/{slug}": {
+          "method": "GET",
+          "description": "Get details of a specific AI tool",
+          "parameters": {
+            "slug": { "type": "string", "description": "Tool slug" }
+          },
+          "response": { "$ref": "#/definitions/AITool" }
+        }
+      }
+    },
+    "hubs": {
+      "description": "Hub pages endpoints",
+      "paths": {
+        "/api/hubs": {
+          "method": "GET",
+          "description": "List all technology hubs",
+          "response": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/Hub" }
+          }
+        }
+      }
+    }
+  },
+  "base_url": "https://devradar.dev/api",
+  "documentation": "https://devradar.dev/docs",
+  "contact": "https://devradar.dev/contact"
+}

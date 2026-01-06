@@ -1,0 +1,77 @@
+{
+  "project": "DevRadar",
+  "url": "https://devradar.dev",
+  "description": "Tech Stack Compatibility Checker & AI Coding Tools Directory",
+  "updated_at": "2025-01-06",
+  "version": "1.0.0",
+  "statistics": {
+    "total_compatibility_pages": 1000,
+    "total_ai_tools": 50,
+    "total_hubs": 20
+  },
+  "sitemaps": [
+    {
+      "name": "Main Sitemap",
+      "url": "https://devradar.dev/sitemap.xml"
+    }
+  ],
+  "featured_pages": [
+    {
+      "url": "https://devradar.dev/check/nextjs-prisma",
+      "title": "Next.js + Prisma Compatibility",
+      "category": "compatibility"
+    },
+    {
+      "url": "https://devradar.dev/check/supabase-vercel",
+      "title": "Supabase + Vercel Compatibility",
+      "category": "compatibility"
+    },
+    {
+      "url": "https://devradar.dev/tools/lovable",
+      "title": "Lovable - AI App Builder",
+      "category": "ai-tool"
+    },
+    {
+      "url": "https://devradar.dev/tools/bolt-new",
+      "title": "Bolt.new - AI Full-Stack Builder",
+      "category": "ai-tool"
+    },
+    {
+      "url": "https://devradar.dev/tools/cursor",
+      "title": "Cursor - AI Code Editor",
+      "category": "ai-tool"
+    },
+    {
+      "url": "https://devradar.dev/tools/claude-code",
+      "title": "Claude Code - AI CLI Tool",
+      "category": "ai-tool"
+    },
+    {
+      "url": "https://devradar.dev/wizard",
+      "title": "Stack Wizard - Get Recommendations",
+      "category": "tool"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Compatibility Checks",
+      "url": "https://devradar.dev/check",
+      "count": 1000
+    },
+    {
+      "name": "AI Tools",
+      "url": "https://devradar.dev/tools",
+      "count": 50
+    },
+    {
+      "name": "Hubs",
+      "url": "https://devradar.dev/hub",
+      "count": 20
+    }
+  ],
+  "resources": {
+    "api_schema": "https://github.com/devradar-dev/website/blob/main/docs/api-schema.json",
+    "methodology": "https://devradar.dev/methodology",
+    "contact": "mailto:hey@devradar.dev"
+  }
+}

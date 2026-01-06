@@ -1,0 +1,30 @@
+name: Sitemap Ping
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  ping-search-engines:
+    name: Ping Search Engines
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Google
+        run: |
+          echo "Pinging Google for devradar.dev sitemap..."
+          curl -s -o /dev/null -w "Google Status: %{http_code}\n" \
+            "http://www.google.com/ping?sitemap=https://devradar.dev/sitemap.xml"
+
+      - name: Ping Bing
+        run: |
+          echo "Pinging Bing for devradar.dev sitemap..."
+          curl -s -o /dev/null -w "Bing Status: %{http_code}\n" \
+            "http://www.bing.com/ping?sitemap=https://devradar.dev/sitemap.xml"
+
+      - name: Update public-pages.json timestamp
+        run: |
+          echo "Updating public-pages.json timestamp..."
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > latest-update.txt
+          echo "Timestamp updated for transparency"
